@@ -35,7 +35,7 @@ Function Package-Headers() {
 
 Function Package-StaticHeaders() {
 	Copy-Item "${OUTPUT}\x64\static\include" -Destination "${OUTPUT}\pkg" `
-	    -Recurse -ErrorAction Stop
+	    -Recurse -Force -ErrorAction Stop
 }
 
 Function Package-Dynamic(${SRC}, ${DEST}) {

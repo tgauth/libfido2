@@ -95,7 +95,7 @@ New-Item -Type Directory "${BUILD}\${Arch}" -Force
 New-Item -Type Directory "${BUILD}\${Arch}\${Type}" -Force
 #New-Item -Type Directory "${STAGE}\${LIBRESSL}" -Force
 New-Item -Type Directory "${STAGE}\${LIBCBOR}" -Force
-New-Item -Type Directory "${STAGE}\${ZLIB}" -Force
+#New-Item -Type Directory "${STAGE}\${ZLIB}" -Force
 
 # Create output directories.
 New-Item -Type Directory "${OUTPUT}" -Force
