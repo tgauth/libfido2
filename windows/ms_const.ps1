@@ -6,8 +6,8 @@
 <#New-Variable -Name 'LIBRESSL_URL' `
     -Value 'https://fastly.cdn.openbsd.org/pub/OpenBSD/LibreSSL' `
     -Option Constant#>
-New-Variable -Name 'LIBRESSL' -Value 'libressl-3.3.5' -Option Constant
-New-Variable -Name 'LIBRESSL_BIN_URL' -Value 'https://github.com/PowerShell/LibreSSL/releases/download/V3.3.5.0/LibreSSL.zip' -Option Constant
+New-Variable -Name 'LIBRESSL' -Value 'libressl-3.4.2' -Option Constant
+New-Variable -Name 'LIBRESSL_BIN_URL' -Value 'https://github.com/PowerShell/LibreSSL/releases/download/V3.4.2.0/LibreSSL.zip' -Option Constant
 
 # libcbor coordinates.
 New-Variable -Name 'LIBCBOR' -Value 'libcbor-0.8.0' -Option Constant
