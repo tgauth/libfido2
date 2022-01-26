@@ -50,7 +50,7 @@ Function Package-Dynamic(${SRC}, ${DEST}) {
 }
 
 Function Package-Static(${SRC}, ${DEST}) {
-	#Copy-Item "${SRC}/lib/cbor.lib" "${DEST}"
+	Copy-Item "${SRC}/lib/cbor.lib" "${DEST}"
 	#Copy-Item "${SRC}/lib/zlib.lib" "${DEST}"
 	#Copy-Item "${SRC}/lib/crypto-${LibCrypto}.lib" "${DEST}"
 	Copy-Item "${SRC}/lib/fido2_static.lib" "${DEST}/fido2.lib"
@@ -69,10 +69,10 @@ Function Package-PDBs(${SRC}, ${DEST}) {
 
 Function Package-StaticPDBs(${SRC}, ${DEST}) {
 	<#Copy-Item "${SRC}\${LIBRESSL}\crypto\Release\crypto-${LibCrypto}.pdb" `
-	    "${DEST}\crypto-${LibCrypto}.pdb"
+	    "${DEST}\crypto-${LibCrypto}.pdb"#>
 	Copy-Item "${SRC}\${LIBCBOR}\src\Release\cbor.pdb" `
 	    "${DEST}\cbor.pdb"
-	Copy-Item "${SRC}\${ZLIB}\Release\zlibstatic.pdb" `
+	<#Copy-Item "${SRC}\${ZLIB}\Release\zlibstatic.pdb" `
 	    "${DEST}\zlib.pdb"#>
 	Copy-Item "${SRC}\src\Release\fido2_static.pdb" `
 	    "${DEST}\fido2.pdb"
