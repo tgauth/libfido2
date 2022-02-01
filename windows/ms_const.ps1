@@ -3,9 +3,6 @@
 # license that can be found in the LICENSE file.
 
 # LibreSSL coordinates.
-<#New-Variable -Name 'LIBRESSL_URL' `
-    -Value 'https://fastly.cdn.openbsd.org/pub/OpenBSD/LibreSSL' `
-    -Option Constant#>
 New-Variable -Name 'LIBRESSL' -Value 'libressl-3.4.2' -Option Constant
 New-Variable -Name 'LIBRESSL_BIN_URL' -Value 'https://github.com/PowerShell/LibreSSL/releases/download/V3.4.2.0/LibreSSL.zip' -Option Constant
 
@@ -18,7 +15,6 @@ New-Variable -Name 'LIBCBOR_GIT' -Value 'https://github.com/PowerShell/libcbor' 
 # zlib coordinates.
 New-Variable -Name 'ZLIB' -Value 'zlib' -Option Constant
 New-Variable -Name 'ZLIB_BRANCH' -Value 'v1.2.11' -Option Constant
-#New-Variable -Name 'ZLIB_GIT' -Value 'https://github.com/madler/zlib' -Option Constant
 New-Variable -Name 'ZLIB_BIN_URL' -Value 'https://github.com/PowerShell/ZLib/releases/download/V1.2.11/ZLib.zip' -Option Constant
 
 # Work directories.
