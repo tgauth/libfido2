@@ -10,8 +10,8 @@ New-Variable -Name 'LIBRESSL' -Value 'libressl-3.4.2' -Option Constant
 New-Variable -Name 'LIBRESSL_BIN_URL' -Value 'https://github.com/PowerShell/LibreSSL/releases/download/V3.4.2.0/LibreSSL.zip' -Option Constant
 
 # libcbor coordinates.
-New-Variable -Name 'LIBCBOR' -Value 'libcbor-0.8.0' -Option Constant
-New-Variable -Name 'LIBCBOR_BRANCH' -Value 'v0.8.0' -Option Constant
+New-Variable -Name 'LIBCBOR' -Value 'libcbor' -Option Constant
+New-Variable -Name 'LIBCBOR_BRANCH' -Value 'master' -Option Constant
 New-Variable -Name 'LIBCBOR_GIT' -Value 'https://github.com/PowerShell/libcbor' `
     -Option Constant
 
