@@ -5,8 +5,6 @@
 param(
 	[string]$CMakePath = "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe",
 	[string]$GitPath = "C:\Program Files\Git\bin\git.exe",
-	[string]$SevenZPath = "C:\Temp\7z-1\7-Zip\7z.exe",
-	[string]$GPGPath = "C:\Program Files (x86)\GnuPG\bin\gpg.exe",
 	[string]$WinSDK = "",
 	[string]$Config = "Release",
 	[string]$Arch = "x64",
@@ -53,26 +51,6 @@ if (-Not (Test-Path $CMake)) {
 	throw "Unable to find CMake at $CMake"
 }
 
-# Find 7z.
-$SevenZ = $(Get-Command 7z -ErrorAction Ignore | `
-    Select-Object -ExpandProperty Source)
-if ([string]::IsNullOrEmpty($SevenZ)) {
-	$SevenZ = $SevenZPath
-}
-if (-Not (Test-Path $SevenZ)) {
-	throw "Unable to find 7z at $SevenZ"
-}
-
-# Find GPG.
-$GPG = $(Get-Command gpg -ErrorAction Ignore | `
-    Select-Object -ExpandProperty Source)
-if ([string]::IsNullOrEmpty($GPG)) {
-	$GPG = $GPGPath
-}
-if (-Not (Test-Path $GPG)) {
-	throw "Unable to find GPG at $GPG"
-}
-
 # Override CMAKE_SYSTEM_VERSION if $WinSDK is set.
 if (-Not ([string]::IsNullOrEmpty($WinSDK))) {
 	$CMAKE_SYSTEM_VERSION = "-DCMAKE_SYSTEM_VERSION='$WinSDK'"
@@ -86,8 +64,6 @@ Write-Host "Arch: $Arch"
 Write-Host "Type: $Type"
 Write-Host "Git: $Git"
 Write-Host "CMake: $CMake"
-Write-Host "7z: $SevenZ"
-Write-Host "GPG: $GPG"
 
 # Create build directories.
 New-Item -Type Directory "${BUILD}" -Force
