@@ -1,12 +1,17 @@
+# Copyright (c) 2022 Yubico AB. All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+# SPDX-License-Identifier: BSD-2-Clause
+
 name: alpine
 
 on:
   pull_request:
     branches:
-    - master
+    - main
   push:
     branches:
-    - master
+    - main
     - '*-ci'
 
 jobs:
@@ -22,7 +27,9 @@ jobs:
       run: |
         apk -q update
         apk add build-base clang clang-analyzer cmake coreutils eudev-dev
-        apk add git linux-headers openssl-dev sudo zlib-dev
+        apk add git linux-headers openssl-dev sudo zlib-dev pcsc-lite-dev
+    - name: fix permissions on workdir
+      run: chown root:wheel "${GITHUB_WORKSPACE}"
     - name: checkout libfido2
       uses: actions/checkout@v2
     - name: checkout libcbor

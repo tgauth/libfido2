@@ -1,5 +1,10 @@
 #!/bin/sh -eux
 
+# Copyright (c) 2022 Yubico AB. All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+# SPDX-License-Identifier: BSD-2-Clause
+
 # XXX defining CC and cross-compiling confuses OpenSSL's build.
 unset CC
 
@@ -27,8 +32,8 @@ make -j"$(nproc)" -C build
 sudo make -C build install
 cd ..
 
-# Build and install OpenSSL 1.1.1l.
-git clone --depth=1 https://github.com/openssl/openssl -b OpenSSL_1_1_1l
+# Build and install OpenSSL 1.1.1q.
+git clone --depth=1 https://github.com/openssl/openssl -b OpenSSL_1_1_1q
 cd openssl
 ./Configure mingw --prefix=/fakeroot --openssldir=/fakeroot/openssl \
 	--cross-compile-prefix=i686-w64-mingw32-
@@ -37,7 +42,7 @@ sudo make install_sw
 cd ..
 
 # Build and install zlib.
-git clone --depth=1 https://github.com/madler/zlib -b v1.2.11
+git clone --depth=1 https://github.com/madler/zlib -b v1.2.12
 cd zlib
 make -fwin32/Makefile.gcc PREFIX=i686-w64-mingw32-
 sudo make -fwin32/Makefile.gcc PREFIX=i686-w64-mingw32- DESTDIR=/fakeroot \

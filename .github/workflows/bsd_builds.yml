@@ -1,9 +1,14 @@
+# Copyright (c) 2022 Yubico AB. All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+# SPDX-License-Identifier: BSD-2-Clause
+
 name: bsd
 
 on:
   push:
     branches:
-    - master
+    - main
     - '*-ci'
 
 jobs:
@@ -13,7 +18,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        image: [freebsd/13.x, openbsd/7.0]
+        image: [freebsd/13.x, openbsd/7.1]
     steps:
     - uses: actions/checkout@v2
     - name: dependencies
