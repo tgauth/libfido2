@@ -1,23 +1,24 @@
 #!/bin/sh -eux
 
-# Copyright (c) 2020 Yubico AB. All rights reserved.
+# Copyright (c) 2020-2022 Yubico AB. All rights reserved.
 # Use of this source code is governed by a BSD-style
 # license that can be found in the LICENSE file.
+# SPDX-License-Identifier: BSD-2-Clause
 
 LIBCBOR_URL="https://github.com/pjk/libcbor"
 LIBCBOR_TAG="v0.9.0"
 LIBCBOR_ASAN="address alignment bounds"
 LIBCBOR_MSAN="memory"
 OPENSSL_URL="https://github.com/openssl/openssl"
-OPENSSL_TAG="OpenSSL_1_1_1l"
+OPENSSL_TAG="OpenSSL_1_1_1q"
 ZLIB_URL="https://github.com/madler/zlib"
-ZLIB_TAG="v1.2.11"
+ZLIB_TAG="v1.2.12"
 ZLIB_ASAN="address alignment bounds undefined"
 ZLIB_MSAN="memory"
 FIDO2_ASAN="address bounds implicit-conversion leak pointer-compare pointer-subtract undefined"
 FIDO2_MSAN="memory"
 COMMON_CFLAGS="-g2 -fno-omit-frame-pointer"
-UBSAN_OPTIONS="halt_on_error=1:print_stacktrace=1"
+UBSAN_OPTIONS="halt_on_error=1:print_stacktrace=1:strict_string_checks=1"
 ASAN_OPTIONS="${UBSAN_OPTIONS}:detect_invalid_pointer_pairs=2:detect_leaks=1"
 MSAN_OPTIONS="${UBSAN_OPTIONS}"
 
@@ -64,7 +65,7 @@ cd -
 # zlib
 git clone --depth=1 "${ZLIB_URL}" -b "${ZLIB_TAG}"
 cd zlib
-CFLAGS="${ZLIB_CFLAGS}" LDFLAGS="${ZLIB_CFLAGS}" ./configure \
+CFLAGS="${ZLIB_CFLAGS}" LDFLAGS="${ZLIB_CFLAGS}" cc="$CC" ./configure \
     --prefix="${FAKEROOT}"
 make install
 cd -
@@ -82,7 +83,7 @@ mkdir corpus
 curl -s https://storage.googleapis.com/yubico-libfido2/corpus.tgz |
     tar -C corpus -zxf -
 export UBSAN_OPTIONS ASAN_OPTIONS MSAN_OPTIONS
-for f in assert bio cred credman hid largeblob mgmt netlink; do
+for f in assert bio cred credman hid largeblob mgmt netlink pcsc; do
 	build/fuzz/fuzz_${f} -use_value_profile=1 -reload=30 -print_pcs=1 \
 	    -print_funcs=30 -timeout=10 -runs=1 corpus/fuzz_${f}
 done

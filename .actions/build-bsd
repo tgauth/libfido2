@@ -1,4 +1,10 @@
 #!/bin/sh -eux
+
+# Copyright (c) 2022 Yubico AB. All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+# SPDX-License-Identifier: BSD-2-Clause
+
 BASE_URL="https://builds.sr.ht"
 MANIFEST="$(mktemp)"
 LOGFILE="$(mktemp)"
@@ -10,6 +16,7 @@ image: ${IMAGE}
 packages:
   - cmake
   - llvm
+  - pcsc-lite
 EOF
 
 case "${IMAGE}" in
@@ -37,10 +44,10 @@ tasks:
         mkdir build-\$T
         (cd build-\$T && \${SCAN} cmake -DCMAKE_BUILD_TYPE=\$T ..)
         \${SCAN} make -j"\$(sysctl -n hw.ncpu)" -C build-\$T
+        make -C build-\$T regress
         \${SUDO} make -C build-\$T install
       done
 EOF
-
 
 q() {
 	curl \
