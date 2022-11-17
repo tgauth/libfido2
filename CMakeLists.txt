@@ -448,7 +448,6 @@ endif()
 enable_testing()
 
 subdirs(src)
-subdirs(regress)
 if(BUILD_EXAMPLES)
 	subdirs(examples)
 endif()
