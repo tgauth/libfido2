@@ -282,12 +282,13 @@ else()
 	add_compile_options(-pedantic)
 	add_compile_options(-pedantic-errors)
 
+	add_compile_options(/Qspectre) # add Spectre mitigation compiler option. (https://docs.microsoft.com/en-us/cpp/build/reference/qspectre?view=vs-2017)
+
 	set(EXTRA_CFLAGS "-Wconversion -Wsign-conversion")
 
 	if(WIN32)
 		add_compile_options(-Wno-type-limits)
 		add_compile_options(-Wno-cast-function-type)
-		add_compile_options(/Qspectre) # add Spectre mitigation compiler option. (https://docs.microsoft.com/en-us/cpp/build/reference/qspectre?view=vs-2017)
 	endif()
 
 	if(HAVE_SHORTEN_64_TO_32)
