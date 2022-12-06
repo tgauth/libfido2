@@ -197,6 +197,9 @@ if(MSVC)
 		add_definitions(-DUSE_WINHELLO)
 	endif()
 	set(NFC_LINUX OFF)
+
+	add_compile_options(/Qspectre) # add Spectre mitigation compiler option. (https://docs.microsoft.com/en-us/cpp/build/reference/qspectre?view=vs-2017)
+	
 else()
 	include(FindPkgConfig)
 	pkg_search_module(CBOR libcbor)
