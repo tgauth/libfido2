@@ -33,7 +33,7 @@ set(FIDO_MINOR "13")
 set(FIDO_PATCH "0")
 set(FIDO_VERSION ${FIDO_MAJOR}.${FIDO_MINOR}.${FIDO_PATCH})
 
-option(BUILD_TESTS       "Build the regress tests"                 ON)
+option(BUILD_TESTS       "Build the regress tests"                 OFF)
 option(BUILD_EXAMPLES    "Build example programs"                  ON)
 option(BUILD_MANPAGES    "Build man pages"                         ON)
 option(BUILD_SHARED_LIBS "Build a shared library"                  ON)
