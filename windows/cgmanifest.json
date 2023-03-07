@@ -5,7 +5,7 @@
                 "Type": "other",
                 "Other": {
                     "Name": "libfido2",
-                    "Version": "1.10.0",
+                    "Version": "1.13.0",
                     "DownloadUrl": "https://github.com/Yubico/libfido2"
                 }
             },
