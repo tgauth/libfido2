@@ -79,12 +79,14 @@ New-Item -Type Directory "${OUTPUT}\${Arch}\${Type}" -force
 # Fetch and verify dependencies.
 Push-Location ${BUILD}
 try {
+    Write-Host "LIBRESSL URL: ${LIBRESSL_BIN_URL}"
     Invoke-WebRequest ${LIBRESSL_BIN_URL} -OutFile .\${LIBRESSL}.zip
     Expand-Archive -Path .\${LIBRESSL}.zip -DestinationPath "." -Force
     Remove-Item -Force .\${LIBRESSL}.zip
 
     GitClone "${LIBCBOR_GIT}" "${LIBCBOR_BRANCH}" ".\${LIBCBOR}"
-
+    
+    Write-Host "ZLIB URL: ${ZLIB_BIN_URL}"
     Invoke-WebRequest ${ZLIB_BIN_URL} -OutFile .\${ZLIB}.zip
     Expand-Archive -Path .\${ZLIB}.zip -DestinationPath "." -Force
     Remove-Item -Force .\${ZLIB}.zip
